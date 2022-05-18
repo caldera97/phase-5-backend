@@ -3,5 +3,14 @@ Rails.application.routes.draw do
   resources :comments
   resources :posts
   resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get "/posts/:id/comments", to: "posts#index_comments"
+
+  get "/users/:id/posts", to: "users#index_posts"
+
+  get "/me", to: "users#show" #make useEffect in app to fetch here to see if logged in
+  post "/signup", to: "users#create"
+  post '/login', to:  'sessions#create' 
+  delete '/logout', to:  'sessions#destroy'
+
 end
