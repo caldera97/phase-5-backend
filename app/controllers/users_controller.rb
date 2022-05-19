@@ -28,7 +28,7 @@ class UsersController < ApplicationController
         user = User.find_by(id: session[:user_id])
           # byebug
         if !!user
-            render json: user
+            render json: user, serializer: UserSerializer
         else
             render json: { error: "Not authorized" }, status: :unauthorized
         end

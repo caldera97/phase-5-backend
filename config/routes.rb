@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "/me", to: "users#show" #make useEffect in app to fetch here to see if logged in
   post "/signup", to: "users#create"
-  post '/login', to:  'sessions#create' 
-  delete '/logout', to:  'sessions#destroy'
+  post '/login', to:  'session#create' 
+  delete '/logout', to:  'session#destroy'
 
 end

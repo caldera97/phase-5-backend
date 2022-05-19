@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.permit(:user_id, :community_id, :content)
+        params.permit(:user_id, :tags, :img, :content, :id)
     end
 
     def render_post_not_found
