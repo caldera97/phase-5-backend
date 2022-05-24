@@ -34,4 +34,4 @@ User.create(username: "user15", password_digest: BCrypt::Password.create('passwo
 
 30.times {Favorite.create(user_id: rand(User.count), post_id: rand(Post.count))}
 
-60.times {Comment.create(content: Faker::Lorem.paragraph, user_id: rand(User.count), post_id: rand(Post.count))}
+85.times {Comment.create(content: Faker::Lorem.paragraph, user_id: rand(User.count), post_id: rand(Post.count))}
