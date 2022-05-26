@@ -20,6 +20,11 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_post_not_found
         render json: post
     end
 
+    def search
+        posts = Post.where('content LIKE ?', "%#{params[:search]}%").or(Post.where('tags  LIKE ?', "%#{params[:search]}%"))
+        render json: posts
+    end
+
     def create
         post = Post.create(post_params)
         render json: post, status: :created
@@ -38,7 +43,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_post_not_found
     end
 
     def post_params
-        params.permit(:user_id, :tags, :img, :content, :id)
+        params.permit(:user_id, :tags, :img, :content, :id, :search)
     end
 
     def render_post_not_found

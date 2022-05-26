@@ -13,5 +13,7 @@ Rails.application.routes.draw do
   post '/login', to:  'session#create' 
   delete '/logout', to:  'session#destroy'
   post '/editUser', to: 'users#edit_user'
+  # post '/search', to: 'posts#search'
+  get '/search/:search', to: 'posts#search'
 
 end
