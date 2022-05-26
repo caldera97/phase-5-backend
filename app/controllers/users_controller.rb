@@ -23,8 +23,19 @@ class UsersController < ApplicationController
             render json: { errors: "username already in use" }, status: :unprocessable_entity
         end
     end
+
+    # def edit_user
+    #     user = User.find_by(username: params[:auth_username])
+    #     if user && user.authenticate(password: params[:auth_password])
+    #         user.update(user_params)
+    #         render json: user
+    #       else
+    #         render json: { error: "Not authorized" }, status: :unauthorized
+    #       end
+    #  end
+
   
-    def show
+    def valid
         user = User.find_by(id: session[:user_id])
           # byebug
         if !!user
@@ -32,6 +43,11 @@ class UsersController < ApplicationController
         else
             render json: { error: "Not authorized" }, status: :unauthorized
         end
+    end
+
+    def show
+        user = find_user
+        render json: user
     end
       
     private
@@ -41,6 +57,6 @@ class UsersController < ApplicationController
     end
       
     def user_params
-        params.permit(:user, :username, :password, :password_confirmation, :id)
+        params.permit(:user, :username,:auth_username, :password, :auth_password, :password_confirmation, :id)
     end
 end
