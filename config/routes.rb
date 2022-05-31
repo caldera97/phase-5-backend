@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   post '/editUser', to: 'users#edit_user'
   # post '/search', to: 'posts#search'
   get '/search/:search', to: 'posts#search'
+  get '/following/posts', to: 'follows#get_following_posts'
 
 end
