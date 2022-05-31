@@ -2,7 +2,7 @@ class FollowsController < ApplicationController
     def get_following_posts
         user = find_user
         posts = user.following.joins(:posts).distinct
-        render json: posts
+        render json: posts , each_serializer: FavoritePostsSerializer
     end
 
     def create
@@ -12,7 +12,7 @@ class FollowsController < ApplicationController
     def destroy
         follow= Follow.where(follower_id: params[:follower_id], following_id: params[:following_id])
         follow.destroy
-        head: no_content
+        head :no_content
     end
 
     private
